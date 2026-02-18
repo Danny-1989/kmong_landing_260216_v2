@@ -96,8 +96,10 @@ const App = () => {
         </div>
       </nav>
 
-       {/* Hero Section - Updated Mobile Order: Copy -> CTA -> Video */}
-      <section className="pt-12 md:pt-32 pb-16 md:pb-32 bg-[#F9FBFA]">
+       
+      {/* Hero Section - Updated Mobile Order: Copy -> CTA -> Video */}
+      {/* pb-0 on mobile ensures the gray background ends exactly at the video bottom */}
+      <section className="pt-12 md:pt-32 pb-0 md:pb-32 bg-[#F9FBFA]">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-8 md:gap-12 px-0 md:px-8">
           {/* Text Content & Button */}
           <div className="md:w-1/2 text-center md:text-left px-5 md:px-0 flex flex-col items-center md:items-start">
