@@ -96,66 +96,69 @@ const App = () => {
         </div>
       </nav>
 
-      {/* Hero Section - PC Split Layout */}
+      {/* Hero Section - Mobile Order: Copy -> Video -> Button */}
       <section className="pt-12 md:pt-32 pb-16 md:pb-32 px-5 md:px-8 bg-[#F9FBFA]">
-        <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-12">
-          {/* Left: Text Content */}
+        <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-8 md:gap-12">
+          {/* Text Content */}
           <div className="md:w-1/2 text-center md:text-left">
             <h1 className="text-[32px] md:text-[60px] font-black leading-[1.1] mb-6 tracking-tight break-keep">
               일 생기면, <br className="hidden md:block" />일단 <span className="text-black">크몽</span>
             </h1>
-            <p className="text-base md:text-xl text-slate-600 mb-10 break-keep">
+            <p className="text-base md:text-xl text-slate-600 mb-8 md:mb-10 break-keep">
               비즈니스는 키우고 번거로운 일은 덜어내세요. <br className="hidden md:block" />
               이미 수많은 기업들이 크몽에서 성공을 만들고 있습니다.
             </p>
-            <button className="w-full md:w-auto md:px-12 bg-[#92FA72] text-black font-bold text-lg py-5 rounded-xl shadow-[0_8px_20px_rgba(146,250,114,0.3)] active:scale-95 hover:shadow-[0_12px_24px_rgba(146,250,114,0.4)] transition-all">
+            {/* CTA Button (Hidden on Mobile here, shown below Video) */}
+            <button className="hidden md:inline-block md:px-12 bg-[#92FA72] text-black font-bold text-lg py-5 rounded-xl shadow-[0_8px_20px_rgba(146,250,114,0.3)] active:scale-95 hover:shadow-[0_12px_24px_rgba(146,250,114,0.4)] transition-all">
               무료로 시작하기
             </button>
           </div>
 
-          {/* Right: Video Visual */}
+          {/* Video Visual */}
           <div className="md:w-[55%] w-full">
-            <div className="w-full aspect-[16/9] bg-gray-200 rounded-[32px] overflow-hidden relative shadow-2xl group cursor-pointer">
+            <div className="w-full aspect-[16/9] bg-gray-200 rounded-[24px] md:rounded-[32px] overflow-hidden relative shadow-2xl group cursor-pointer">
               <div className="absolute inset-0 flex items-center justify-center bg-black/10 group-hover:bg-black/20 transition-all">
                 <div className="w-16 h-16 md:w-20 md:h-20 bg-white rounded-full flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
                   <Play fill="black" size={24} className="ml-1" />
                 </div>
               </div>
-              <div className="absolute bottom-6 left-6 text-white text-left opacity-0 group-hover:opacity-100 transition-opacity">
-                <p className="text-xs md:text-sm font-bold bg-black/30 backdrop-blur-sm px-3 py-1 rounded-full w-fit mb-2">크몽 가이드 영상</p>
-                <h3 className="text-sm md:text-lg font-bold">크몽으로 전문가를 만나는 가장 똑똑한 방법</h3>
-              </div>
             </div>
           </div>
+
+          {/* CTA Button (Shown only on Mobile below Video) */}
+          <button className="md:hidden w-full bg-[#92FA72] text-black font-bold text-lg py-5 rounded-xl shadow-[0_8px_20px_rgba(146,250,114,0.3)] active:scale-95 transition-all">
+            무료로 시작하기
+          </button>
         </div>
       </section>
 
-      {/* Diagnosis Section */}
+      {/* Diagnosis Section - Mobile: No scroll, 3 column grid */}
       <section className="py-20 md:py-32 px-5 bg-white">
         <div className="max-w-7xl mx-auto">
-          <div className="mb-12 md:text-center">
+          <div className="mb-10 md:mb-12 md:text-center">
             <span className="bg-[#E8F8E3] text-[#3F7D4B] px-3 py-1 rounded-full text-xs md:text-sm font-bold mb-4 inline-block">맞춤 진단</span>
             <h2 className="text-2xl md:text-4xl font-bold mb-4">어떤 고민이 있으신가요?</h2>
             <p className="text-sm md:text-lg text-slate-500">고민을 선택하시면 딱 맞는 전문가를 추천해 드릴게요</p>
           </div>
 
-          <div className="flex gap-3 mb-12 overflow-x-auto no-scrollbar md:justify-center pb-2">
+          {/* Tab Grid for Mobile */}
+          <div className="grid grid-cols-3 gap-1 md:flex md:gap-3 mb-10 md:mb-12 md:justify-center">
             {[
-              { id: 'store', label: '매장 운영자', icon: <Store size={20} /> },
-              { id: 'seller', label: '온라인 셀러', icon: <ShoppingBag size={20} /> },
-              { id: 'founder', label: '초기 창업자', icon: <Rocket size={20} /> }
+              { id: 'store', label: '매장 운영자', icon: <Store size={18} /> },
+              { id: 'seller', label: '온라인 셀러', icon: <ShoppingBag size={18} /> },
+              { id: 'founder', label: '초기 창업자', icon: <Rocket size={18} /> }
             ].map((tab) => (
               <button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
-                className={`flex items-center gap-2 px-6 py-4 rounded-2xl font-bold transition-all whitespace-nowrap text-sm md:text-base border-2 ${
+                className={`flex flex-col md:flex-row items-center justify-center gap-1.5 md:gap-2 py-3 md:py-4 px-1 md:px-6 rounded-xl md:rounded-2xl font-bold transition-all border-2 ${
                   activeTab === tab.id 
                     ? 'bg-black text-white border-black shadow-lg translate-y-[-2px]' 
-                    : 'bg-white text-slate-500 border-gray-100 hover:border-gray-200 hover:bg-gray-50'
+                    : 'bg-white text-slate-400 border-gray-100 hover:border-gray-200'
                 }`}
               >
-                {tab.icon}
-                {tab.label}
+                <span className={activeTab === tab.id ? 'text-[#92FA72]' : 'text-slate-300'}>{tab.icon}</span>
+                <span className="text-[10px] sm:text-xs md:text-base whitespace-nowrap">{tab.label}</span>
               </button>
             ))}
           </div>
@@ -238,55 +241,62 @@ const App = () => {
         </div>
       </section>
 
-      {/* Guide Section */}
+      {/* Guide Section - Step with connecting lines */}
       <section className="py-20 md:py-32 px-5 bg-white overflow-hidden">
         <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-20">
+          <div className="text-center mb-16 md:mb-24">
             <p className="text-[10px] md:text-xs font-bold text-[#3F7D4B] mb-3 uppercase tracking-widest">이용 가이드</p>
             <h2 className="text-2xl md:text-4xl font-bold mb-4">3단계로 간단하게</h2>
             <p className="text-sm md:text-lg text-slate-500">처음 이용하시나요? 걱정 마세요, 크몽이 안내해 드릴게요</p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-12 md:gap-24 relative">
-            <div className="hidden md:block absolute top-10 left-[15%] right-[15%] h-[1px] bg-gray-100 z-0"></div>
+          {/* Timeline Structure */}
+          <div className="flex flex-col md:flex-row gap-16 md:gap-12 relative">
+            {/* Vertical Line (Mobile) / Horizontal Line (PC) */}
+            <div className="absolute left-[24px] top-10 bottom-10 w-[2px] bg-gray-100 z-0 md:hidden"></div>
+            <div className="hidden md:block absolute top-[44px] left-[15%] right-[15%] h-[2px] bg-gray-100 z-0"></div>
             
             {[
               {
                 step: '1',
                 title: '탐색',
-                icon: <Search size={24} className="text-[#3F7D4B]" />,
+                icon: <Search size={22} className="text-[#3F7D4B]" />,
                 desc: '간편하게 검색하고, 실제 후기와 포트폴리오로 실력을 비교해 보세요',
                 checks: ['실제 후기 확인', '포토폴리오 비교']
               },
               {
                 step: '2',
                 title: '문의',
-                icon: <MessageSquare size={24} className="text-[#3F7D4B]" />,
+                icon: <MessageSquare size={22} className="text-[#3F7D4B]" />,
                 desc: '결제 전 전문가와 무료로 상담하며 상세한 요구사항을 조율할 수 있어요',
                 checks: ['무료 상담', '요구사항 조율']
               },
               {
                 step: '3',
                 title: '거래',
-                icon: <ShieldCheck size={24} className="text-[#3F7D4B]" />,
+                icon: <ShieldCheck size={22} className="text-[#3F7D4B]" />,
                 desc: '작업 완료까지 대금을 안전하게 보호하는 에스크로 결제로 안심하고 거래하세요',
                 checks: ['에스크로 결제', '안전 보장']
               }
             ].map((item, i) => (
-              <div key={i} className="relative z-10 flex flex-col items-center text-center">
-                <div className="w-20 h-20 bg-[#92FA72] rounded-[28px] flex items-center justify-center font-black text-2xl shadow-xl mb-8 transform hover:rotate-6 transition-transform">
+              <div key={i} className="relative z-10 flex flex-row md:flex-col items-start md:items-center text-left md:text-center flex-1 gap-6 md:gap-0">
+                {/* Step Circle */}
+                <div className="shrink-0 w-12 h-12 md:w-20 md:h-20 bg-[#92FA72] rounded-2xl md:rounded-[28px] flex items-center justify-center font-black text-lg md:text-2xl shadow-xl md:mb-8 transition-transform hover:scale-105">
                   {item.step}
                 </div>
-                <h3 className="text-xl md:text-2xl font-bold mb-4 flex items-center gap-3">
-                  {item.title} {item.icon}
-                </h3>
-                <p className="text-sm md:text-base text-slate-500 mb-8 leading-relaxed break-keep px-4">{item.desc}</p>
-                <div className="flex flex-wrap justify-center gap-2">
-                  {item.checks.map((check, ci) => (
-                    <div key={ci} className="flex items-center gap-2 text-[11px] md:text-xs font-bold text-slate-800 bg-[#F2F7F2] py-2 px-4 rounded-xl border border-[#DDF4D7]">
-                      <span className="text-[#3F7D4B]">✔</span> {check}
-                    </div>
-                  ))}
+                
+                <div className="pt-1 md:pt-0">
+                  <h3 className="text-xl md:text-2xl font-bold mb-3 md:mb-4 flex items-center md:justify-center gap-3">
+                    {item.title} {item.icon}
+                  </h3>
+                  <p className="text-sm md:text-base text-slate-500 mb-6 md:mb-8 leading-relaxed break-keep">{item.desc}</p>
+                  <div className="flex flex-wrap md:justify-center gap-2">
+                    {item.checks.map((check, ci) => (
+                      <div key={ci} className="flex items-center gap-2 text-[10px] md:text-xs font-bold text-slate-800 bg-[#F2F7F2] py-2 px-3 md:px-4 rounded-xl border border-[#DDF4D7]">
+                        <span className="text-[#3F7D4B]">✔</span> {check}
+                      </div>
+                    ))}
+                  </div>
                 </div>
               </div>
             ))}
@@ -294,49 +304,51 @@ const App = () => {
         </div>
       </section>
 
-      {/* CTA Section */}
+      {/* CTA Section - Layout: Coupon(Top) -> Enterprise(Left) & AI(Right) Grid */}
       <section className="py-20 md:py-32 px-5 bg-[#F2F7F2]">
-        <div className="max-w-7xl mx-auto space-y-6">
-          {/* Coupon CTA */}
-          <div className="bg-white rounded-[40px] p-8 md:p-16 border border-[#C1F2B1] shadow-xl flex flex-col md:flex-row justify-between items-center gap-10 active:scale-[0.99] transition-all">
+        <div className="max-w-7xl mx-auto space-y-4 md:space-y-6">
+          {/* Coupon CTA (Top Full Width) */}
+          <div className="bg-white rounded-[32px] md:rounded-[40px] p-8 md:p-16 border border-[#C1F2B1] shadow-xl flex flex-col md:flex-row justify-between items-center gap-8 md:gap-10 active:scale-[0.99] transition-all">
             <div className="text-center md:text-left">
-              <div className="inline-block bg-[#FF4DDF] text-white px-3 py-1 rounded-lg text-xs font-bold mb-6">첫구매 전용 혜택</div>
+              <div className="inline-block bg-[#FF4DDF] text-white px-2.5 py-1 rounded-lg text-[10px] md:text-xs font-bold mb-4 md:mb-6">첫구매 전용 혜택</div>
               <h3 className="text-2xl md:text-4xl font-black mb-4 leading-tight tracking-tight">지금 가입하고<br className="md:hidden" /> 1만원 할인 쿠폰 받기</h3>
               <p className="text-sm md:text-lg text-slate-500">가입 즉시 크몽의 모든 비즈니스 카테고리에서 사용하실 수 있어요</p>
             </div>
-            <button className="w-full md:w-auto bg-black text-white px-12 py-6 rounded-2xl font-bold text-lg md:text-xl shadow-2xl hover:bg-slate-800 transition-colors">
+            <button className="w-full md:w-auto bg-black text-white px-10 py-5 md:px-12 md:py-6 rounded-2xl font-bold text-base md:text-xl shadow-2xl hover:bg-slate-800 transition-colors">
               쿠폰 받고 시작하기
             </button>
           </div>
 
-          {/* Service Grid CTA */}
-          <div className="grid md:grid-cols-2 gap-6">
-            <div className="bg-white rounded-[40px] p-10 border border-blue-100 hover:shadow-2xl transition-all flex flex-col justify-between h-full group cursor-pointer">
+          {/* Service Grid CTA (Enterprise Left / AI Right) */}
+          <div className="grid grid-cols-2 md:grid-cols-2 gap-3 md:gap-6">
+            {/* Enterprise (Left) */}
+            <div className="bg-white rounded-[24px] md:rounded-[40px] p-6 md:p-10 border border-blue-100 hover:shadow-2xl transition-all flex flex-col justify-between h-full group cursor-pointer relative overflow-hidden">
               <div>
-                <div className="flex items-center gap-2 text-[#1787FF] font-bold text-sm md:text-base mb-6">
-                  <Building2 size={24} />
-                  크몽 엔터프라이즈
+                <div className="flex items-center gap-1.5 md:gap-2 text-[#1787FF] font-bold text-[11px] md:text-base mb-4 md:mb-6">
+                  <Building2 size={18} className="md:w-6 md:h-6" />
+                  엔터프라이즈
                 </div>
-                <h3 className="text-xl md:text-3xl font-bold mb-4 break-keep leading-tight">기업 전담 매니저가<br />최적의 전문가를 매칭해 드려요</h3>
-                <p className="text-slate-500 text-sm md:text-base mb-8">대규모 프로젝트부터 정부지원사업까지 전문가 매칭과 관리를 한 번에 해결하세요</p>
+                <h3 className="text-[14px] md:text-3xl font-bold mb-2 md:mb-4 break-keep leading-tight">기업 전담 매칭 <br className="hidden md:block"/>서비스</h3>
+                <p className="hidden md:block text-slate-500 text-sm md:text-base mb-8">대규모 프로젝트 매칭과 관리를 한 번에 해결하세요</p>
               </div>
-              <div className="flex items-center font-bold text-sm md:text-lg text-black group-hover:gap-4 transition-all">
-                전문 매칭 상담하기 <ChevronRight size={24} />
+              <div className="flex items-center font-bold text-[10px] md:text-lg text-black group-hover:gap-4 transition-all mt-4 md:mt-0">
+                상담하기 <ChevronRight size={14} className="md:w-6 md:h-6" />
               </div>
             </div>
 
-            <div className="bg-white rounded-[40px] p-10 border border-purple-100 hover:shadow-2xl transition-all relative overflow-hidden flex flex-col justify-between h-full group cursor-pointer">
+            {/* AI Search (Right) */}
+            <div className="bg-white rounded-[24px] md:rounded-[40px] p-6 md:p-10 border border-purple-100 hover:shadow-2xl transition-all relative overflow-hidden flex flex-col justify-between h-full group cursor-pointer">
               <div className="absolute -top-10 -right-10 w-40 h-40 bg-purple-50 rounded-full blur-3xl opacity-40"></div>
               <div>
-                <div className="flex items-center gap-2 font-bold text-sm md:text-base mb-6" style={{ color: '#823CE6' }}>
-                  <Sparkles size={24} />
+                <div className="flex items-center gap-1.5 md:gap-2 font-bold text-[11px] md:text-base mb-4 md:mb-6" style={{ color: '#823CE6' }}>
+                  <Sparkles size={18} className="md:w-6 md:h-6" />
                   AI 전문가 검색
                 </div>
-                <h3 className="text-xl md:text-3xl font-bold mb-4 break-keep leading-tight">필요한 작업을 문장으로 말하면<br />AI가 딱 맞는 전문가를 추천해요</h3>
-                <p className="text-slate-500 text-sm md:text-base mb-8">"가게 홍보를 위한 인스타그램 광고 전문가를 찾아줘"와 같이 편하게 말씀해 보세요</p>
+                <h3 className="text-[14px] md:text-3xl font-bold mb-2 md:mb-4 break-keep leading-tight">문장으로 딱 맞는 <br className="hidden md:block"/>추천</h3>
+                <p className="hidden md:block text-slate-500 text-sm md:text-base mb-8">대화하듯 말하면 AI가 전문가를 추천해요</p>
               </div>
-              <div className="flex items-center font-bold text-sm md:text-lg text-black group-hover:gap-4 transition-all">
-                AI 전문가 찾기 <ChevronRight size={24} />
+              <div className="flex items-center font-bold text-[10px] md:text-lg text-black group-hover:gap-4 transition-all mt-4 md:mt-0">
+                찾아보기 <ChevronRight size={14} className="md:w-6 md:h-6" />
               </div>
             </div>
           </div>
