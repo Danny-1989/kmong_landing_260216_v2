@@ -96,11 +96,11 @@ const App = () => {
         </div>
       </nav>
 
-       {/* Hero Section */}
+       {/* Hero Section - Updated Mobile Order: Copy -> CTA -> Video */}
       <section className="pt-12 md:pt-32 pb-16 md:pb-32 bg-[#F9FBFA]">
-        <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6 md:gap-12 px-0 md:px-8">
-          {/* Text Content */}
-          <div className="md:w-1/2 text-center md:text-left px-5 md:px-0">
+        <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-8 md:gap-12 px-0 md:px-8">
+          {/* Text Content & Button */}
+          <div className="md:w-1/2 text-center md:text-left px-5 md:px-0 flex flex-col items-center md:items-start">
             <h1 className="text-[32px] md:text-[60px] font-black leading-[1.1] mb-4 md:mb-6 tracking-tight break-keep">
               일 생기면, <br className="hidden md:block" />일단 <span className="text-black">크몽</span>
             </h1>
@@ -108,13 +108,14 @@ const App = () => {
               비즈니스는 키우고 번거로운 일은 덜어내세요. <br className="hidden md:block" />
               이미 수많은 기업들이 크몽에서 성공을 만들고 있습니다.
             </p>
-            {/* CTA Button (Desktop) */}
-            <button className="hidden md:inline-block md:px-12 bg-[#92FA72] text-black font-bold text-lg py-5 rounded-xl shadow-[0_8px_20px_rgba(146,250,114,0.3)] active:scale-95 hover:shadow-[0_12px_24px_rgba(146,250,114,0.4)] transition-all">
+            
+            {/* CTA Button: Reduced size, centered on mobile */}
+            <button className="px-8 md:px-12 py-3.5 md:py-5 bg-[#92FA72] text-black font-bold text-base md:text-lg rounded-xl shadow-[0_8px_20px_rgba(146,250,114,0.3)] active:scale-95 hover:shadow-[0_12px_24px_rgba(146,250,114,0.4)] transition-all mb-10 md:mb-0">
               무료로 시작하기
             </button>
           </div>
 
-          {/* Video Visual - Full width on mobile */}
+          {/* Video Visual - Positioned after Button on Mobile */}
           <div className="md:w-[55%] w-full">
             <div className="w-full aspect-[16/9] bg-gray-200 md:rounded-[32px] overflow-hidden relative shadow-2xl group cursor-pointer">
               <div className="absolute inset-0 flex items-center justify-center bg-black/10 group-hover:bg-black/20 transition-all">
@@ -123,13 +124,6 @@ const App = () => {
                 </div>
               </div>
             </div>
-          </div>
-
-          {/* CTA Button (Mobile only) - Added padding to align with text */}
-          <div className="w-full px-5 md:hidden">
-            <button className="w-full bg-[#92FA72] text-black font-bold text-lg py-5 rounded-xl shadow-[0_8px_20px_rgba(146,250,114,0.3)] active:scale-95 transition-all">
-              무료로 시작하기
-            </button>
           </div>
         </div>
       </section>
