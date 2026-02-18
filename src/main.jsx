@@ -77,7 +77,12 @@ const App = () => {
       {/* Navigation */}
       <nav className="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-gray-100 px-4 md:px-8 h-16 flex items-center justify-between">
         <div className="max-w-7xl mx-auto w-full flex items-center justify-between">
-          <div className="font-black text-2xl italic">kmong</div>
+          <img 
+            src="kmong_프로필_블랙_투명.png" 
+            alt="kmong" 
+            className="h-[20px] md:h-[22px]"
+            onError={(e) => { e.target.src = 'https://via.placeholder.com/100x20?text=kmong'; }}
+          />
           <div className="hidden md:flex items-center gap-8 text-sm font-bold">
             <a href="#" className="hover:text-[#3F7D4B]">서비스 탐색</a>
             <a href="#" className="hover:text-[#3F7D4B]">크몽biz</a>
@@ -91,22 +96,36 @@ const App = () => {
         </div>
       </nav>
 
-      {/* Hero Section */}
+      {/* Hero Section - PC Split Layout */}
       <section className="pt-12 md:pt-32 pb-16 md:pb-32 px-5 md:px-8 bg-[#F9FBFA]">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-12">
+          {/* Left: Text Content */}
           <div className="md:w-1/2 text-center md:text-left">
             <h1 className="text-[32px] md:text-[60px] font-black leading-[1.1] mb-6 tracking-tight break-keep">
               일 생기면, <br className="hidden md:block" />일단 <span className="text-black">크몽</span>
             </h1>
             <p className="text-base md:text-xl text-slate-600 mb-10 break-keep">
-              비즈니스는 키우고 번거로운 일은 덜어내세요.
+              비즈니스는 키우고 번거로운 일은 덜어내세요. <br className="hidden md:block" />
+              이미 수많은 기업들이 크몽에서 성공을 만들고 있습니다.
             </p>
-            <button className="w-full md:w-auto md:px-12 bg-[#92FA72] text-black font-bold text-lg py-5 rounded-xl shadow-lg">
+            <button className="w-full md:w-auto md:px-12 bg-[#92FA72] text-black font-bold text-lg py-5 rounded-xl shadow-[0_8px_20px_rgba(146,250,114,0.3)] active:scale-95 hover:shadow-[0_12px_24px_rgba(146,250,114,0.4)] transition-all">
               무료로 시작하기
             </button>
           </div>
-          <div className="md:w-[55%] w-full bg-gray-200 aspect-video rounded-[32px] flex items-center justify-center">
-            <Play size={48} />
+
+          {/* Right: Video Visual */}
+          <div className="md:w-[55%] w-full">
+            <div className="w-full aspect-[16/9] bg-gray-200 rounded-[32px] overflow-hidden relative shadow-2xl group cursor-pointer">
+              <div className="absolute inset-0 flex items-center justify-center bg-black/10 group-hover:bg-black/20 transition-all">
+                <div className="w-16 h-16 md:w-20 md:h-20 bg-white rounded-full flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
+                  <Play fill="black" size={24} className="ml-1" />
+                </div>
+              </div>
+              <div className="absolute bottom-6 left-6 text-white text-left opacity-0 group-hover:opacity-100 transition-opacity">
+                <p className="text-xs md:text-sm font-bold bg-black/30 backdrop-blur-sm px-3 py-1 rounded-full w-fit mb-2">크몽 가이드 영상</p>
+                <h3 className="text-sm md:text-lg font-bold">크몽으로 전문가를 만나는 가장 똑똑한 방법</h3>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -114,54 +133,294 @@ const App = () => {
       {/* Diagnosis Section */}
       <section className="py-20 md:py-32 px-5 bg-white">
         <div className="max-w-7xl mx-auto">
+          <div className="mb-12 md:text-center">
+            <span className="bg-[#E8F8E3] text-[#3F7D4B] px-3 py-1 rounded-full text-xs md:text-sm font-bold mb-4 inline-block">맞춤 진단</span>
+            <h2 className="text-2xl md:text-4xl font-bold mb-4">어떤 고민이 있으신가요?</h2>
+            <p className="text-sm md:text-lg text-slate-500">고민을 선택하시면 딱 맞는 전문가를 추천해 드릴게요</p>
+          </div>
+
           <div className="flex gap-3 mb-12 overflow-x-auto no-scrollbar md:justify-center pb-2">
-            {['store', 'seller', 'founder'].map((id) => (
+            {[
+              { id: 'store', label: '매장 운영자', icon: <Store size={20} /> },
+              { id: 'seller', label: '온라인 셀러', icon: <ShoppingBag size={20} /> },
+              { id: 'founder', label: '초기 창업자', icon: <Rocket size={20} /> }
+            ].map((tab) => (
               <button
-                key={id}
-                onClick={() => setActiveTab(id)}
-                className={`flex items-center gap-2 px-6 py-4 rounded-2xl font-bold border-2 ${
-                  activeTab === id ? 'bg-black text-white border-black' : 'bg-white text-slate-500 border-gray-100'
+                key={tab.id}
+                onClick={() => setActiveTab(tab.id)}
+                className={`flex items-center gap-2 px-6 py-4 rounded-2xl font-bold transition-all whitespace-nowrap text-sm md:text-base border-2 ${
+                  activeTab === tab.id 
+                    ? 'bg-black text-white border-black shadow-lg translate-y-[-2px]' 
+                    : 'bg-white text-slate-500 border-gray-100 hover:border-gray-200 hover:bg-gray-50'
                 }`}
               >
-                {id === 'store' ? '매장 운영자' : id === 'seller' ? '온라인 셀러' : '초기 창업자'}
+                {tab.icon}
+                {tab.label}
               </button>
             ))}
           </div>
+
           <div className="grid md:grid-cols-3 gap-6">
             {diagnosisData[activeTab].sections.map((section, idx) => (
-              <div key={idx} className="bg-[#F9FBFA] rounded-[32px] p-8 border border-gray-100 flex flex-col justify-between">
+              <div 
+                key={idx} 
+                className="group bg-[#F9FBFA] rounded-[32px] p-8 border border-gray-100 hover:border-[#92FA72] hover:bg-white active:scale-[0.98] transition-all cursor-pointer shadow-sm hover:shadow-xl flex flex-col justify-between h-full"
+              >
                 <div>
-                  <h3 className="text-lg font-bold mb-6">{section.label}</h3>
+                  <div className="flex justify-between items-start mb-6">
+                    <h3 className="text-lg md:text-xl font-bold break-keep leading-tight text-slate-800 pr-6">
+                      {section.label}
+                    </h3>
+                    <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center text-slate-300 group-hover:text-[#3F7D4B] shadow-sm transition-colors">
+                      <ChevronRight size={20} />
+                    </div>
+                  </div>
+                  
                   <div className="flex flex-wrap gap-2 mb-8">
                     {section.items.map((item, i) => (
-                      <span key={i} className="px-3 py-1.5 bg-white border border-gray-100 rounded-xl text-xs text-slate-500">
+                      <span key={i} className="px-3 py-1.5 bg-white border border-gray-100 rounded-xl text-xs text-slate-500 font-medium">
                         {item}
                       </span>
                     ))}
                   </div>
                 </div>
-                <div className="font-bold text-sm">{section.cta} →</div>
+
+                <div className="flex items-center gap-2 text-sm font-bold text-slate-900 group-hover:text-[#3F7D4B]">
+                  {section.cta} <ArrowRight size={16} />
+                </div>
               </div>
             ))}
           </div>
         </div>
       </section>
 
+      {/* Facts Section */}
+      <section className="py-20 md:py-28 bg-black text-white px-5">
+        <div className="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-y-12">
+          {[
+            { label: '누적 거래', value: '600만+' },
+            { label: '누적 회원', value: '400만+' },
+            { label: '누적 서비스', value: '70만+' },
+            { label: '고객만족도', value: '98.6%' }
+          ].map((stat, i) => (
+            <div key={i} className="text-center md:border-l border-white/10 first:border-0">
+              <p className="text-gray-500 text-xs md:text-sm mb-2 uppercase tracking-widest">{stat.label}</p>
+              <h4 className="text-3xl md:text-5xl font-black text-[#92FA72] tracking-tight">{stat.value}</h4>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Categories Section */}
+      <section className="py-20 md:py-32 px-5 bg-[#F9FBFA]">
+        <div className="max-w-7xl mx-auto">
+          <div className="mb-16 md:text-center">
+            <h2 className="text-2xl md:text-4xl font-bold mb-4 break-keep">비즈니스의 모든 것 다 됩니다.</h2>
+            <p className="text-sm md:text-lg text-slate-500">디자인부터 개발, 마케팅, 세무까지 필요한 전문가를 한곳에서 만나보세요</p>
+          </div>
+
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 md:gap-6">
+            {[
+              { icon: <Palette size={28} />, title: '디자인', desc: '로고, 상세페이지 등' },
+              { icon: <Megaphone size={28} />, title: '마케팅', desc: 'SNS 관리, 바이럴 등' },
+              { icon: <Code size={28} />, title: 'IT 개발', desc: '홈페이지, 앱 등' },
+              { icon: <Video size={28} />, title: '영상, 사진', desc: '촬영, 편집 등' },
+              { icon: <Scale size={28} />, title: '세무 법무', desc: '세무, 노무 자문 등' },
+              { icon: <FileText size={28} />, title: '번역, 문서', desc: '통번역, 문서작성 등' }
+            ].map((cat, i) => (
+              <div key={i} className="bg-white p-6 md:p-8 rounded-[32px] border border-gray-100 hover:border-[#92FA72] transition-all hover:shadow-lg group cursor-pointer">
+                <div className="mb-6 text-slate-300 group-hover:text-black transition-colors">{cat.icon}</div>
+                <h4 className="font-bold text-sm md:text-base mb-2">{cat.title}</h4>
+                <p className="text-[11px] md:text-xs text-slate-400 leading-tight">{cat.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Guide Section */}
+      <section className="py-20 md:py-32 px-5 bg-white overflow-hidden">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-20">
+            <p className="text-[10px] md:text-xs font-bold text-[#3F7D4B] mb-3 uppercase tracking-widest">이용 가이드</p>
+            <h2 className="text-2xl md:text-4xl font-bold mb-4">3단계로 간단하게</h2>
+            <p className="text-sm md:text-lg text-slate-500">처음 이용하시나요? 걱정 마세요, 크몽이 안내해 드릴게요</p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-12 md:gap-24 relative">
+            <div className="hidden md:block absolute top-10 left-[15%] right-[15%] h-[1px] bg-gray-100 z-0"></div>
+            
+            {[
+              {
+                step: '1',
+                title: '탐색',
+                icon: <Search size={24} className="text-[#3F7D4B]" />,
+                desc: '간편하게 검색하고, 실제 후기와 포트폴리오로 실력을 비교해 보세요',
+                checks: ['실제 후기 확인', '포토폴리오 비교']
+              },
+              {
+                step: '2',
+                title: '문의',
+                icon: <MessageSquare size={24} className="text-[#3F7D4B]" />,
+                desc: '결제 전 전문가와 무료로 상담하며 상세한 요구사항을 조율할 수 있어요',
+                checks: ['무료 상담', '요구사항 조율']
+              },
+              {
+                step: '3',
+                title: '거래',
+                icon: <ShieldCheck size={24} className="text-[#3F7D4B]" />,
+                desc: '작업 완료까지 대금을 안전하게 보호하는 에스크로 결제로 안심하고 거래하세요',
+                checks: ['에스크로 결제', '안전 보장']
+              }
+            ].map((item, i) => (
+              <div key={i} className="relative z-10 flex flex-col items-center text-center">
+                <div className="w-20 h-20 bg-[#92FA72] rounded-[28px] flex items-center justify-center font-black text-2xl shadow-xl mb-8 transform hover:rotate-6 transition-transform">
+                  {item.step}
+                </div>
+                <h3 className="text-xl md:text-2xl font-bold mb-4 flex items-center gap-3">
+                  {item.title} {item.icon}
+                </h3>
+                <p className="text-sm md:text-base text-slate-500 mb-8 leading-relaxed break-keep px-4">{item.desc}</p>
+                <div className="flex flex-wrap justify-center gap-2">
+                  {item.checks.map((check, ci) => (
+                    <div key={ci} className="flex items-center gap-2 text-[11px] md:text-xs font-bold text-slate-800 bg-[#F2F7F2] py-2 px-4 rounded-xl border border-[#DDF4D7]">
+                      <span className="text-[#3F7D4B]">✔</span> {check}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="py-20 md:py-32 px-5 bg-[#F2F7F2]">
+        <div className="max-w-7xl mx-auto space-y-6">
+          {/* Coupon CTA */}
+          <div className="bg-white rounded-[40px] p-8 md:p-16 border border-[#C1F2B1] shadow-xl flex flex-col md:flex-row justify-between items-center gap-10 active:scale-[0.99] transition-all">
+            <div className="text-center md:text-left">
+              <div className="inline-block bg-[#FF4DDF] text-white px-3 py-1 rounded-lg text-xs font-bold mb-6">첫구매 전용 혜택</div>
+              <h3 className="text-2xl md:text-4xl font-black mb-4 leading-tight tracking-tight">지금 가입하고<br className="md:hidden" /> 1만원 할인 쿠폰 받기</h3>
+              <p className="text-sm md:text-lg text-slate-500">가입 즉시 크몽의 모든 비즈니스 카테고리에서 사용하실 수 있어요</p>
+            </div>
+            <button className="w-full md:w-auto bg-black text-white px-12 py-6 rounded-2xl font-bold text-lg md:text-xl shadow-2xl hover:bg-slate-800 transition-colors">
+              쿠폰 받고 시작하기
+            </button>
+          </div>
+
+          {/* Service Grid CTA */}
+          <div className="grid md:grid-cols-2 gap-6">
+            <div className="bg-white rounded-[40px] p-10 border border-blue-100 hover:shadow-2xl transition-all flex flex-col justify-between h-full group cursor-pointer">
+              <div>
+                <div className="flex items-center gap-2 text-[#1787FF] font-bold text-sm md:text-base mb-6">
+                  <Building2 size={24} />
+                  크몽 엔터프라이즈
+                </div>
+                <h3 className="text-xl md:text-3xl font-bold mb-4 break-keep leading-tight">기업 전담 매니저가<br />최적의 전문가를 매칭해 드려요</h3>
+                <p className="text-slate-500 text-sm md:text-base mb-8">대규모 프로젝트부터 정부지원사업까지 전문가 매칭과 관리를 한 번에 해결하세요</p>
+              </div>
+              <div className="flex items-center font-bold text-sm md:text-lg text-black group-hover:gap-4 transition-all">
+                전문 매칭 상담하기 <ChevronRight size={24} />
+              </div>
+            </div>
+
+            <div className="bg-white rounded-[40px] p-10 border border-purple-100 hover:shadow-2xl transition-all relative overflow-hidden flex flex-col justify-between h-full group cursor-pointer">
+              <div className="absolute -top-10 -right-10 w-40 h-40 bg-purple-50 rounded-full blur-3xl opacity-40"></div>
+              <div>
+                <div className="flex items-center gap-2 font-bold text-sm md:text-base mb-6" style={{ color: '#823CE6' }}>
+                  <Sparkles size={24} />
+                  AI 전문가 검색
+                </div>
+                <h3 className="text-xl md:text-3xl font-bold mb-4 break-keep leading-tight">필요한 작업을 문장으로 말하면<br />AI가 딱 맞는 전문가를 추천해요</h3>
+                <p className="text-slate-500 text-sm md:text-base mb-8">"가게 홍보를 위한 인스타그램 광고 전문가를 찾아줘"와 같이 편하게 말씀해 보세요</p>
+              </div>
+              <div className="flex items-center font-bold text-sm md:text-lg text-black group-hover:gap-4 transition-all">
+                AI 전문가 찾기 <ChevronRight size={24} />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Footer */}
-      <footer className="bg-white border-t border-gray-100 pt-20 pb-12 px-5 md:px-8 text-center md:text-left">
-        <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
-           <div className="font-black text-xl italic opacity-50">kmong</div>
-           <div className="flex gap-6 text-slate-400">
-             <Instagram size={24} />
-             <Youtube size={24} />
-             <Facebook size={24} />
-           </div>
+      <footer className="bg-white border-t border-gray-100 pt-20 pb-12 px-5 md:px-8">
+        <div className="max-w-7xl mx-auto">
+          {/* 상단 로고 및 SNS 섹션 (기존 유지) */}
+          <div className="grid grid-cols-2 md:grid-cols-5 gap-10 mb-20">
+            <div className="col-span-2 md:col-span-1">
+              <div className="font-black text-xl italic mb-8">kmong</div>
+              <div className="flex gap-4">
+                <Instagram size={20} className="text-slate-400 hover:text-black cursor-pointer transition-colors" />
+                <Youtube size={20} className="text-slate-400 hover:text-black cursor-pointer transition-colors" />
+                <Facebook size={20} className="text-slate-400 hover:text-black cursor-pointer transition-colors" />
+              </div>
+            </div>
+            <div><h5 className="font-bold text-sm mb-6">서비스</h5><ul className="text-xs text-slate-500 space-y-4"><li>크몽마켓</li><li>엔터프라이즈</li></ul></div>
+            <div><h5 className="font-bold text-sm mb-6">고객센터</h5><ul className="text-xs text-slate-500 space-y-4"><li>자주 묻는 질문</li><li>1544-6254</li></ul></div>
+          </div>
+
+          {/* 요청하신 상세 푸터 내용 */}
+          <div className="pt-10 border-t border-gray-100">
+            <p className="text-[11px] text-slate-400 leading-relaxed break-keep">
+              (주)크몽 | 서울시 서초구 사임당로 157, 3층 | 대표: 박현호, 김태헌 | 사업자등록번호: 613-81-65278{' '}
+              <a 
+                href="http://www.ftc.go.kr/bizCommPop.do?wrkr_no=6138165278" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="font-bold underline text-slate-600 hover:text-black"
+              >
+                사업자 정보확인
+              </a>
+              <br />
+              통신판매업신고: 2018-서울서초-2134 | 유료직업소개사업등록번호: 제2021-3210195-14-5-00035호 | 고객센터 1544-6254 | 호스팅 사업자: Amazon Web Service(AWS) |{' '}
+              <a 
+                href="https://dknj7.channel.io/support-bots/97627" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="hover:text-black underline"
+              >
+                1:1 문의하기
+              </a>{' '}
+              | help@kmong.com
+              <br /><br />
+              (주)크몽은 통신판매중개자이며, 통신판매의 당사자가 아닙니다. 상품, 상품정보, 거래에 관한 의무와 책임은 판매회원에게 있습니다.
+              <br />
+              (주)크몽 사이트의 상품/전문가/이벤트 정보, 디자인 및 화면의 구성, UI 등의 무단복제, 배포, 방송 또는 전송, 스크래핑 등의 행위는 저작권법, 콘텐츠산업 진흥법 등 관련법령에 의하여 엄격히 금지됩니다.{' '}
+              <button 
+                onClick={() => alert("콘텐츠산업 진흥법에 따른 표시\n1. 콘텐츠 명칭: 크몽 서비스 내 콘텐츠\n2. 제작연월일: 2026-01-01\n3. 제작자: (주)크몽")}
+                className="underline hover:text-black"
+              >
+                [안내 보기]
+              </button>
+              <br />
+              (주)크몽은 선불전자지급수단에 대해 지급보증보험에 가입하여 안전하게 보호하고 있습니다.{' '}
+              <a 
+                href="https://support.kmong.com/hc/ko/articles/50158040597145" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="underline hover:text-black"
+              >
+                [가입 사실 확인]
+              </a>
+              <br /><br />
+              Copyright © 2026 kmong Inc. All rights reserved.
+            </p>
+          </div>
         </div>
       </footer>
+
+      {/* Mobile Floating CTA */}
+      <div className="fixed bottom-6 left-1/2 -translate-x-1/2 w-[calc(100%-40px)] max-w-[440px] z-50 md:hidden">
+        <button className="w-full bg-black text-[#92FA72] py-5 rounded-full font-black text-base shadow-2xl flex items-center justify-center gap-2 active:scale-95 transition-transform">
+          무료 상담 시작하기 <ChevronRight size={18} />
+        </button>
+      </div>
     </div>
   );
 };
 
+// --- 실행 코드 ---
 const container = document.getElementById('root');
 const root = createRoot(container);
 root.render(<App />);
