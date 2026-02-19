@@ -117,12 +117,12 @@ const App = () => {
             </button>
           </div>
 
-          {/* Video Visual - YouTube Embed Applied */}
+          {/* Video Visual - YouTube Embed Applied with Autoplay and Mute */}
           <div className="md:w-[55%] w-full">
             <div className="w-full aspect-[16/9] bg-black md:rounded-[32px] overflow-hidden relative shadow-2xl group">
               <iframe 
                 className="w-full h-full"
-                src="https://www.youtube.com/embed/np3G6_jHCtQ?si=8NxNTwGjACyg3O5y&controls=0" 
+                src="https://www.youtube.com/embed/np3G6_jHCtQ?si=8NxNTwGjACyg3O5y&controls=0&autoplay=1&mute=1" 
                 title="YouTube video player" 
                 frameBorder="0" 
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
