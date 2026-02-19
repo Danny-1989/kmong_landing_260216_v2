@@ -117,12 +117,13 @@ const App = () => {
             </button>
           </div>
 
-          {/* Video Visual - YouTube Embed Applied with Autoplay and Mute */}
+          {/* Video Visual - YouTube Sequential Loop Player */}
+          {/* playlist 파라미터에 두 영상 ID(np3G6_jHCtQ, v0NaPsIFdOI)를 넣어 순차 재생 및 루프를 구현했습니다. */}
           <div className="md:w-[55%] w-full">
             <div className="w-full aspect-[16/9] bg-black md:rounded-[32px] overflow-hidden relative shadow-2xl group">
               <iframe 
                 className="w-full h-full"
-                src="https://www.youtube.com/embed/np3G6_jHCtQ?si=8NxNTwGjACyg3O5y&controls=0&autoplay=1&mute=1" 
+                src="https://www.youtube.com/embed/np3G6_jHCtQ?si=8NxNTwGjACyg3O5y&controls=0&autoplay=1&mute=1&loop=1&playlist=np3G6_jHCtQ,v0NaPsIFdOI" 
                 title="YouTube video player" 
                 frameBorder="0" 
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
