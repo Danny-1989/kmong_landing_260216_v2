@@ -117,14 +117,18 @@ const App = () => {
             </button>
           </div>
 
-          {/* Video Visual - Positioned after Button on Mobile */}
+          {/* Video Visual - YouTube Embed Applied */}
           <div className="md:w-[55%] w-full">
-            <div className="w-full aspect-[16/9] bg-gray-200 md:rounded-[32px] overflow-hidden relative shadow-2xl group cursor-pointer">
-              <div className="absolute inset-0 flex items-center justify-center bg-black/10 group-hover:bg-black/20 transition-all">
-                <div className="w-16 h-16 md:w-20 md:h-20 bg-white rounded-full flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
-                  <Play fill="black" size={24} className="ml-1" />
-                </div>
-              </div>
+            <div className="w-full aspect-[16/9] bg-black md:rounded-[32px] overflow-hidden relative shadow-2xl group">
+              <iframe 
+                className="w-full h-full"
+                src="https://www.youtube.com/embed/np3G6_jHCtQ?si=8NxNTwGjACyg3O5y&controls=0" 
+                title="YouTube video player" 
+                frameBorder="0" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                referrerPolicy="strict-origin-when-cross-origin" 
+                allowFullScreen
+              ></iframe>
             </div>
           </div>
         </div>
